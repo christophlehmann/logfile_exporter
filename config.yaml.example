@@ -1,0 +1,19 @@
+---
+
+logfiles:
+  - filename: var/log/mail.log
+    metrics:
+      - name: mail_reject_by_dnsbl_total
+        help: Total number of delivery attempts blocked by DNS Blacklists
+        regex: postfix.*554 5.7.1 Service unavailable.*blocked using
+
+      - name: mail_reject_for_unresolvable_domain_total
+        regex: Sender address rejected.*Domain not found
+        help: Total number of delivery attempts with unresolvable domains
+
+      - name: mail_reject_for_relay_access_denied_total
+        regex: Relay access denied
+        help: Total number of relay attempts.
+
+      - name: mails_accept_for_delivery_total
+        regex: postfix\/smtp.*status=sent
